@@ -1,0 +1,63 @@
+/*Criar tabelas*/
+
+CREATE TABLE Administrador
+(
+	AdministradorID VARCHAR(30) NOT NULL,
+	AdministradorNome VARCHAR(30) NOT NULL,
+	AdministradorSenha VARCHAR(30) NOT NULL,
+	AdministradorStatus BIT NOT NULL,
+	PRIMARY KEY (AdministradorID)
+);
+
+CREATE TABLE Major
+(
+	MajorID VARCHAR(30) NOT NULL,
+	MajorNome VARCHAR(30) NOT NULL,
+	MajorCreditos INT NOT NULL,
+	AdministradorID VARCHAR(30) NOT NULL,
+	PRIMARY KEY (MajorID),
+	FOREIGN KEY (AdministradorID) REFERENCES Administrador(AdministradorID)
+);
+
+CREATE TABLE Aluno
+(
+	AlunoID VARCHAR(30) NOT NULL,
+	AlunoNome VARCHAR(30) NOT NULL,
+	AlunoSenha VARCHAR(30) NOT NULL,
+	AlunoStatus BIT NOT NULL,
+	MajorID VARCHAR(30),
+	PRIMARY KEY (AlunoID),
+	FOREIGN KEY (MajorID) REFERENCES Major(MajorID)
+);
+
+/*Deletar tabelas*/
+
+DROP TABLE Aluno;
+DROP TABLE Major;
+DROP TABLE Administrador;
+
+/*Inserir dados*/
+
+INSERT INTO Administrador VALUES ('ADM1', 'Jorge dos Santos', 'carlitosMeAma', 0);
+INSERT INTO Administrador VALUES ('ADM2', 'Sara Borges', 'doguinho2222', 0);
+
+INSERT INTO Major VALUES ('MJ1', 'Sociologia', 90, 'ADM1');
+INSERT INTO Major VALUES ('MJ2', 'Direito', 90, 'ADM2');
+INSERT INTO Major VALUES ('MJ3', 'Ciências Econômicas', 90, 'ADM2');
+INSERT INTO Major VALUES ('MJ4', 'Antropologia', 60, 'ADM1');
+INSERT INTO Major VALUES ('MJ5', 'Administração', 60, 'ADM1');
+
+INSERT INTO Aluno VALUES ('AL1', 'Guilherme Vargas', 'formando_logo020', 0, 'MJ1');
+INSERT INTO Aluno VALUES ('AL2', 'Giovanna Arpínia', 'austriatalonge', 0, 'MJ1');
+INSERT INTO Aluno VALUES ('AL3', 'Douglas Reginaldo', 'esseemeuRG', 0, 'MJ3');
+INSERT INTO Aluno VALUES ('AL4', 'Maria Cardoso', 'fuidebase', 0, 'MJ2');
+INSERT INTO Aluno VALUES ('AL5', 'Arthur da Costa', 'filhinhodamamaes', 0, 'MJ5');
+INSERT INTO Aluno VALUES ('AL6', 'Hermínia Pera', 'reidamontanha', 0, 'MJ2');
+INSERT INTO Aluno VALUES ('AL7', 'Gertrudes Burjois', 'jemapelleundeuxtrois', 0, 'MJ4');
+INSERT INTO Aluno VALUES ('AL8', 'Pródotis Alumni', 'cuidado_cucuia', 0, 'MJ4');
+INSERT INTO Aluno VALUES ('AL9', 'Steve Rogers', 'aviso_voceestasendohackeado', 0, 'MJ5');
+INSERT INTO Aluno VALUES ('AL10', 'Annabeth Chase', 'cuanefrankehomenagem', 0, 'MJ1');
+INSERT INTO Aluno VALUES ('AL11', 'Eduardo Briggs', 'juliansupermanetc', 0, NULL);
+INSERT INTO Aluno VALUES ('AL12', 'Robertinha', 'seicantaaaaaaaa-aaaaaar', 0, NULL);
+
+
